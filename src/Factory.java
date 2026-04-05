@@ -8,9 +8,10 @@ public class Factory {
 
         Teacher teacher1 = new Teacher(3,"Сидоров С.С", "ss@mail.ru");
         Course course1 = new Course(1,"Программирование", "PR");
-        Course course2 = new Course(1,"Системное администрирование", "SA");
+        Course course2 = new Course(2,"Системное администрирование", "SA");
 
         System.out.println(studentManager.getAllStudents());
+        System.out.println(studentManager.getStudent(2));
 
     }
 }

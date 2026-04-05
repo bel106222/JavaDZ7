@@ -34,7 +34,7 @@ public class Course implements Serializable {
     public String getCourseCode() {
         return courseCode;
     }
-    public void setCourseCode(int credits) {
+    public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
     public Teacher getTeacher() {
@@ -47,8 +47,10 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return  "Код курса: " + courseCode +
+        String currentTeacher = (this.teacher != null) ? teacher.getName() : "не назначен";
+        return  "ID курса: " + courseId +
+                ", код курса: " + courseCode +
                 ", название: " + courseName +
-                ", преподаватель: " + teacher.getName();
+                ", преподаватель: " + currentTeacher;
     }
 }

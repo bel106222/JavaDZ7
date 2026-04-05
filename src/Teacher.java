@@ -31,6 +31,6 @@ public class Teacher extends User {
 
     @Override
     public String toString() {
-        return "Преподаватель: " + super.toString() + ", ID: " + super.getId();
+        return "Преподаватель: " + super.toString();
     }
 }

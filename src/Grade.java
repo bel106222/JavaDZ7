@@ -38,7 +38,7 @@ public class Grade implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Студент: %s, курс: %s, оценка: %d (%s), дата: %s",
+        return String.format("Студент: %s, курс: %s, оценка: %d, дата: %s",
                 student.getName(), course.getCourseName(), score, date);
     }
 }

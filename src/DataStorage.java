@@ -7,8 +7,8 @@ import java.util.List;
  */
 public class DataStorage {
     // Имена файлов для хранения данных
-    private static final String STUDENTS_FILE = "students.json";
-    private static final String COURSES_FILE = "courses.json";
+    private static final String STUDENTS_FILE = "students.dat";
+    private static final String COURSES_FILE = "courses.dat";
 
     /**
      * Сохраняет всех студентов и курсы в файлы
@@ -28,7 +28,7 @@ public class DataStorage {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(STUDENTS_FILE))) {
             // Получаем список всех студентов и сохраняем
             oos.writeObject(studentManager.getAllStudents());
-            System.out.println("Студенты успешно сохранены..");
+            System.out.println("Студенты успешно сохранены.");
         } catch (IOException e) {
             System.err.println("Ошибка записи студентов: " + e.getMessage());
         }
@@ -46,7 +46,6 @@ public class DataStorage {
             System.err.println("Ошибка записи курсов: " + e.getMessage());
         }
     }
-
     /**
      * Загружает данные из файлов
      * @param studentManager менеджер студентов для заполнения
@@ -57,7 +56,6 @@ public class DataStorage {
         loadStudents(studentManager);
         loadCourses(courseManager);
     }
-
     /**
      * Загружает студентов из файла (десериализация)
      * @param studentManager менеджер студентов
@@ -81,7 +79,6 @@ public class DataStorage {
             System.out.println("Студенты не найдены.");
         }
     }
-
     /**
      * Загружает курсы из файла (десериализация)
      * @param courseManager менеджер курсов
@@ -96,6 +93,8 @@ public class DataStorage {
                     courseManager.addCourse(course);
                 }
                 System.out.println("Курсы успешно загружены.");
+                courseManager.getAllTeachers();
+                System.out.println("Преподаватели успешно загружены.");
             } catch (IOException | ClassNotFoundException e) {
                 System.err.println("Ошибка загрузки курсов: " + e.getMessage());
             }

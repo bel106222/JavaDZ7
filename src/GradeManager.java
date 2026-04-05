@@ -10,7 +10,7 @@ public class GradeManager {
     // Список всех оценок в системе
     private List<Grade> grades;
     // Имя файла для сохранения оценок
-    private static final String GRADES_FILE = "grades.json";
+    private static final String GRADES_FILE = "grades.dat";
 
     /**
      * Конструктор - загружает существующие оценки из файла
@@ -42,13 +42,12 @@ public class GradeManager {
     public List<Grade> getStudentGrades(Student student) {
         List<Grade> studentGrades = new ArrayList<>();
         for (Grade grade : grades) {
-            if (grade.getStudent().equals(student)) {
+            if (grade.getStudent().getId() == student.getId()) {
                 studentGrades.add(grade);
             }
         }
         return studentGrades;
     }
-
     /**
      * Получает все оценки по конкретному курсу
      * @param course курс
@@ -83,9 +82,7 @@ public class GradeManager {
         }
         double average = sum / studentGrades.size();
         System.out.printf("Средний балл: %.2f %n", average);
-        //System.out.printf("Средний балл: %.2f (%s)%n", average);
     }
-
     /**
      * Выводит все оценки по курсу
      * @param course курс
@@ -102,7 +99,6 @@ public class GradeManager {
             System.out.println(grade);
         }
     }
-
     /**
      * Сохраняет все оценки в файл с помощью сериализации
      */
@@ -113,7 +109,6 @@ public class GradeManager {
             System.err.println("Ошибка записи оценок: " + e.getMessage());
         }
     }
-
     /**
      * Загружает оценки из файла (десериализация)
      * Если файл не существует, создает пустой список

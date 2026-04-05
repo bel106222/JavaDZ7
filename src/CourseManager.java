@@ -108,8 +108,26 @@ public class CourseManager {
     }
 
     /**
-     * Выводит информацию о всех преподавателях
+     * Получаем информацию о всех преподавателях
      */
+    public Map<Integer, Teacher> getAllTeachers() {
+        // Множество для хранения уникальных преподавателей
+        Set<Teacher> uniqueTeachers = new HashSet<>();
+        // Перебираем все курсы
+        for (Course course : courses.values()) {
+            Teacher teacher = course.getTeacher();
+            if (teacher != null) {
+                uniqueTeachers.add(teacher);
+            }
+        }
+        for (Teacher teacher : uniqueTeachers) {
+            teachers.put(teacher.getId(), teacher);
+        }
+        return teachers;
+    }
+    /**
+    * Выводит информацию о всех преподавателях
+    */
     public void displayAllTeachers() {
         if (teachers.isEmpty()) {
             System.out.println("Нет преподавателей.");
